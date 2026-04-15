@@ -18,7 +18,7 @@ app.use(userRoutes);
 app.use(express.static("uploads"))
 
 const start = async ()=>{
-    const connectDb = await mongoose.connect("mongodb+srv://dawoodshaik7786_db_user:dawood4@cluster0.ybuapib.mongodb.net/?appName=Cluster0");
+    const connectDb = await mongoose.connect(process.env.MONGO_URI);
 
     app.listen(9090,()=>{
         console.log("server is listening at 9090")
