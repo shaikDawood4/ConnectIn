@@ -4,14 +4,21 @@ import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styles from "./index.module.css";
-
+import { setTokenIsThere } from '@/config/redux/reducer/authReducer';
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
   const authState = useSelector((state) => state.auth)
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      router.push("/login");
+    }
+    dispatch(setTokenIsThere());
+  }, []);
 
+  
   useEffect(() => {
     if (authState.isTokenThere) {
       dispatch(getAllPosts());
