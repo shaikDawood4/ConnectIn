@@ -44,8 +44,9 @@ export default function Dashboard({ children }) {
         const token = localStorage.getItem("token")
 
         if (token) {
-            dispatch(getAllPosts())
-            dispatch(getAboutUser({ token }))
+            dispatch(getAllPosts());
+            dispatch(getAllUsers());
+            dispatch(getAboutUser({ token }));
         }
     }, [])
 
